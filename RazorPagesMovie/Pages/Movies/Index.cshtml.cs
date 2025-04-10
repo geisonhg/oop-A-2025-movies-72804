@@ -20,7 +20,8 @@ namespace RazorPagesMovie.Pages.Movies
             _context = context;
         }
 
-        public IList<Movie> Movie { get;set; } = default!;
+        public IList<Movie> Movie { get; set; } = default!;
+
         [BindProperty(SupportsGet = true)]
         public string? SearchString { get; set; }
 
@@ -31,18 +32,22 @@ namespace RazorPagesMovie.Pages.Movies
 
         public async Task OnGetAsync()
         {
-            // <snippet_search_linqQuery>
             IQueryable<string> genreQuery = from m in _context.Movie
                                             orderby m.Genre
                                             select m.Genre;
-            // </snippet_search_linqQuery>
 
             var movies = from m in _context.Movie
                          select m;
 
             if (!string.IsNullOrEmpty(SearchString))
             {
-                movies = movies.Where(s => s.Title.Contains(SearchString));
+                var search = SearchString.ToLower();
+
+                movies = movies.Where(s =>
+                    s.Title.ToLower().Contains(search) ||
+                    s.Genre.ToLower().Contains(search) ||
+                    s.Director.ToLower().Contains(search) ||
+                    s.ReleaseCountry.ToLower().Contains(search));
             }
 
             if (!string.IsNullOrEmpty(MovieGenre))
@@ -50,9 +55,7 @@ namespace RazorPagesMovie.Pages.Movies
                 movies = movies.Where(x => x.Genre == MovieGenre);
             }
 
-            // <snippet_search_selectList>
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
-            // </snippet_search_selectList>
             Movie = await movies.ToListAsync();
         }
     }

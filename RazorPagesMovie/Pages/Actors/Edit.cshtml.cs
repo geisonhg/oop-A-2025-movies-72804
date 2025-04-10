@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,13 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesMovie.Pages_Actors
 {
     public class EditModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
-        public List<AssignedActorData> AssignedActorDataList { get; set; } = new();
-
 
         public EditModel(RazorPagesMovie.Data.RazorPagesMovieContext context)
         {
@@ -23,10 +21,7 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         [BindProperty]
-        public Movie Movie { get; set; } = default!;
-
-        [BindProperty]
-        public List<int> SelectedActors { get; set; } = new();
+        public Actor Actor { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -35,12 +30,12 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            var movie =  await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
+            var actor =  await _context.Actor.FirstOrDefaultAsync(m => m.ID == id);
+            if (actor == null)
             {
                 return NotFound();
             }
-            Movie = movie;
+            Actor = actor;
             return Page();
         }
 
@@ -53,7 +48,7 @@ namespace RazorPagesMovie.Pages.Movies
                 return Page();
             }
 
-            _context.Attach(Movie).State = EntityState.Modified;
+            _context.Attach(Actor).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +56,7 @@ namespace RazorPagesMovie.Pages.Movies
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MovieExists(Movie.Id))
+                if (!ActorExists(Actor.ID))
                 {
                     return NotFound();
                 }
@@ -74,9 +69,9 @@ namespace RazorPagesMovie.Pages.Movies
             return RedirectToPage("./Index");
         }
 
-        private bool MovieExists(int id)
+        private bool ActorExists(int id)
         {
-            return _context.Movie.Any(e => e.Id == id);
+            return _context.Actor.Any(e => e.ID == id);
         }
     }
 }

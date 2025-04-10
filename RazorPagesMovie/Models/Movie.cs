@@ -28,5 +28,13 @@ public class Movie
     [StringLength(5)]
     [Required]
     public string Rating { get; set; } = string.Empty;
+    public string Director { get; set; }
+    public string Cast { get; set; } // Names separated by commas
+    public decimal IMDbRating { get; set; }
+    public decimal BoxOfficeRevenue { get; set; }
+    public string ReleaseCountry { get; set; }
+    public List<MovieActor> MovieActors { get; set; } = new();
+
+
 
 }

@@ -17,27 +17,72 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Movie.Title)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Movie.ReleaseDate)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Movie.ReleaseDate)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Movie.Genre)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Movie.Genre)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Movie.Price)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Movie.Price)
         </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Rating)
+        </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Movie.Rating)
         </dd>
+
+        <!-- New fields -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Director)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Director)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Cast)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Cast)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.IMDbRating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.IMDbRating)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.BoxOfficeRevenue)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.BoxOfficeRevenue)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.ReleaseCountry)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.ReleaseCountry)
+        </dd>
+        <!-- End new fields -->
+
     </dl>
 </div>
 <div>
